@@ -1,0 +1,20 @@
+.prueba {
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+
+  .prueba1 {
+    margin-top: -80px;
+  }
+
+  .prueba2 {
+    display: flex;
+    justify-content: space-between;
+    margin-top: -60px;
+  }
+}
+.son {
+  word-wrap: break-word;
+  text-align: justify;
+  text-justify: inter-word;
+}

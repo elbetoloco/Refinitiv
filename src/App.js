@@ -1,25 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Redirect, Route, Switch } from "react-router-dom";
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
+import { selectCurrentToken } from "./redux/auth/auth.selector";
+import "./App.css";
 
-function App() {
+import HomePage from "./pages/homepage/homepage.component";
+import ChartPage from "./pages/chart/chartpage.component";
+
+function App({ currentToken }) {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Switch>
+        <Route path="/chart" component={ChartPage} />
+        <Route
+          path="/graph"
+          component={() => {
+            window.location.href = "https://d2qtarn0vt9297.cloudfront.net/";
+            return null;
+          }}
+        />
+        <Route
+          path="/simplegraph"
+          component={() => {
+            window.location.href = "https://d2qtarn0vt9297.cloudfront.net/simpleChart";
+            return null;
+          }}
+        />
+        <Route
+          exact
+          path="/"
+          render={() =>
+            currentToken ? <Redirect to="/chart" /> : <HomePage />
+          }
+        />
+      </Switch>
     </div>
   );
 }
 
-export default App;
+const mapStateToProps = createStructuredSelector({
+  currentToken: selectCurrentToken,
+});
+
+export default connect(mapStateToProps)(App);

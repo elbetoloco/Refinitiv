@@ -1,0 +1,12 @@
+.father {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    font-size: 2rem;
+}
+
+.son{
+    word-wrap: break-word;
+    text-align: justify;
+    text-justify: inter-word;
+}
